@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gintaute Skvernyte, Flick 13, 2024, Gelatin Silver Contact Prints">
+  <title>Flick 13</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #image-container {
+      cursor: pointer;
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      object-fit: contain;
+      width: 100vw;
+      height: 100svh;
+      opacity: 0;
+    }
+
+    img.visible {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    let allImages;
+    let activeIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.querySelector("#image-container");
+
+      container.addEventListener("click", handleClick);
+      populateImages();
+    });
+
+    function populateImages() {
+      const container = document.getElementById("image-container");
+      const images = [
+        "GS_Pirnt-17_v1.jpg",
+        "GS_Prin-21_V1r.jpg",
+        "GS_Print-11_V1.jpg",
+        "GS_Print-12_v1F.jpg",
+        "GS_Print-13_V1F.jpg",
+        "GS_Print-14_V1F.jpg",
+        "GS_Print-15_v1F.jpg",
+        "GS_Print-18_V1F.jpg",
+        "GS_Print-19_v1F.jpg",
+        "GS_Print-20_V11.jpg",
+        "GS_Print-20_V1F.jpg",
+        "GS_Print-22_v1F.jpg",
+        "GS_Print-2_v1.jpg",
+        "GS_Print-4_v1Fjpg.jpg",
+        "GS_Print-5_V1.jpg",
+        "GS_Print-6_V1_F.jpg",
+        "GS_Print-7_VS1.jpg",
+        "GS_Print-8_V1.jpg",
+        "GS_Print-9_V1.jpg",
+        "GS_Print01_v1.jpg",
+        "GS_Print01_v11.jpg",
+        "GS_Print_03_A006_V1FF.jpg",
+        "GS_UPrint1-1_V1.jpg",
+        "GS_print-16_v1.jpg",
+        "NEEDGS_Print-10_V1.jpg",
+        "NEEDGS_Print-1_V1F.jpg",
+        "NEEDGS_Print_24_A049_V1F.jpg"
+      ].sort(() => Math.random() - 0.5)
+
+      images.forEach(function (src, index) {
+        const img = document.createElement("img");
+        img.src = "images/" + src;
+        img.alt = ""
+
+        if (index == 0) {
+          img.fetchPriority = "high";
+          img.classList.add("visible");
+        }
+
+        container.appendChild(img);
+      });
+
+      allImages = container.querySelectorAll("img");
+    }
+
+    function handleClick() {
+      allImages[activeIndex].classList.remove("visible");
+      activeIndex = Math.floor(Math.random() * allImages.length);
+      allImages[activeIndex].classList.add("visible");
+    } 
+  </script>
+</head>
+
+<body>
+  <div id="image-container"></div>
+</body>
+
+</html>
