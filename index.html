@@ -91,7 +91,13 @@
 
     function handleClick() {
       allImages[activeIndex].classList.remove("visible");
-      activeIndex = Math.floor(Math.random() * allImages.length);
+
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * allImages.length);
+      } while (newIndex === activeIndex && allImages.length > 1);
+      activeIndex = newIndex;
+
       allImages[activeIndex].classList.add("visible");
     } 
   </script>
